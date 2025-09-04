@@ -1,0 +1,19 @@
+name: CI job for showing date and time
+
+on:
+  push:
+    branches:
+    - "**"
+  pull_request:
+    branches:
+    - "**"
+
+jobs:
+  show-datetime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show current date and time
+        run: |
+          echo "Current date and time:"
+          date
+
