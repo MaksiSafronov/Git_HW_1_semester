@@ -13,11 +13,9 @@ class CollectionPerformanceTester {
         System.out.println("Количество элементов: " + ELEMENT_COUNT);
         System.out.println("==================================================");
 
-        // Тестирование ArrayList
         List<Integer> arrayList = new ArrayList<>();
         long arrayListTime = testListPerformance(arrayList, "ArrayList");
 
-        // Тестирование LinkedList
         List<Integer> linkedList = new LinkedList<>();
         long linkedListTime = testListPerformance(linkedList, "LinkedList");
 
@@ -31,7 +29,6 @@ class CollectionPerformanceTester {
 
         long totalTime = 0;
 
-        // 1. Добавление в конец
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < ELEMENT_COUNT; i++) {
             list.add(i);
@@ -41,9 +38,8 @@ class CollectionPerformanceTester {
         totalTime += addEndTime;
         System.out.printf("Добавление в конец: %d ms%n", addEndTime);
 
-        // 2. Добавление в начало
         startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100; i++) { // Меньше элементов чтобы не ждать слишком долго
+        for (int i = 0; i < 100; i++) {
             list.add(0, i);
         }
         endTime = System.currentTimeMillis();
@@ -51,7 +47,6 @@ class CollectionPerformanceTester {
         totalTime += addStartTime;
         System.out.printf("Добавление в начало: %d ms%n", addStartTime);
 
-        // 3. Вставка в середину
         startTime = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
             list.add(list.size() / 2, i);
@@ -61,7 +56,6 @@ class CollectionPerformanceTester {
         totalTime += insertMiddleTime;
         System.out.printf("Вставка в середину: %d ms%n", insertMiddleTime);
 
-        // 4. Доступ по индексу
         startTime = System.currentTimeMillis();
         for (int i = 0; i < ELEMENT_COUNT; i++) {
             list.get(i % list.size());
@@ -71,12 +65,10 @@ class CollectionPerformanceTester {
         totalTime += accessByIndexTime;
         System.out.printf("Доступ по индексу: %d ms%n", accessByIndexTime);
 
-        // 5. Удаление из начала
         startTime = System.currentTimeMillis();
         while (!list.isEmpty()) {
             list.remove(0);
             if (list.size() % 1000 == 0) {
-                // Удаляем по 1000 элементов для демонстрации
                 break;
             }
         }
@@ -85,8 +77,6 @@ class CollectionPerformanceTester {
         totalTime += removeStartTime;
         System.out.printf("Удаление из начала: %d ms%n", removeStartTime);
 
-        // 6. Удаление из конца
-        // Заполняем список снова для теста
         for (int i = 0; i < ELEMENT_COUNT; i++) {
             list.add(i);
         }
