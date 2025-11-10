@@ -10,7 +10,7 @@ public class User {
     @Size(min = 2, max = 50, message = "Имя должно быть от 2 до 50 символов")
     private String name;
 
-    @Email(message = "Некорректный формат email")
+    @Email(message = "Некорректный email")
     @NotNull(message = "Email не может быть null")
     private String email;
 
